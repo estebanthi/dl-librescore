@@ -101,4 +101,14 @@ export default [
         },
         plugins: basePlugins,
     },
+    {
+        input: "src/server.ts",
+        output: {
+            file: "dist/server.js",
+            format: "cjs",
+            banner: "#!/usr/bin/env node",
+            sourcemap: false,
+        },
+        plugins: basePlugins,
+    },
 ];
