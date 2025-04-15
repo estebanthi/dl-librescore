@@ -58,7 +58,7 @@ export default function App() {
                     type="text"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    placeholder="Enter MuseScore URL"
+                    placeholder="Entrez l'URL de la partition MuseScore"
                     className="w-full p-3 mb-4 rounded-lg border border-white bg-slate-700 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-slate-500 transition"
                 />
 
