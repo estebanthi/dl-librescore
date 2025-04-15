@@ -55,6 +55,8 @@ app.post("/download", async (req, res) => {
         return res.status(500).json({ error: "Impossible de récupérer les informations sur la partition." });
     }
 
+    console.log(scoreinfo)
+
     if (scoreinfo.id === 0) {
         return res.status(404).json({ error: "Partition introuvable." });
     }
