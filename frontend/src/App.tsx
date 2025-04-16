@@ -114,7 +114,7 @@ export default function App() {
                                 return (
                                     <a
                                         key={i}
-                                        href={`__API_URL_${fileUrl}`}
+                                        href={`__API_URL__${fileUrl}`}
                                         download
                                         className="block p-3 rounded-lg transition hover:bg-green-500/20"
                                         target="_blank"
