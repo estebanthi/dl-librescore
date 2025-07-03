@@ -4,6 +4,7 @@ import { PDFWorkerHelper } from "./worker-helper";
 import { getFileUrl } from "./file";
 import { ScoreInfo, SheetInfo, Dimensions } from "./scoreinfo";
 import { fetchBuffer } from "./utils";
+import { sanitize } from "sanitize-filename";
 
 type _ExFn = (
     imgURLs: string[],
@@ -91,7 +92,7 @@ export const downloadPDF = async (
     saveAs: typeof import("file-saver").saveAs,
     setText: (str: string) => void
 ): Promise<void> => {
-    const name = scoreinfo.fileName;
+    const name = sanitize(scoreinfo.fileName || "score");
     if (pdfBlob) {
         return saveAs(pdfBlob, `${name}.pdf`);
     }

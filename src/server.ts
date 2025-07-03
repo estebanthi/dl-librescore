@@ -7,6 +7,8 @@ import { ScoreInfoHtml, ScoreInfoObj } from "./scoreinfo";
 import { fetchBuffer } from "./utils";
 import { getFileUrl } from "./file";
 import { exportPDF } from "./pdf";
+import sanitize from "sanitize-filename";
+import he from "he";
 
 
 const SCORE_URL_REG = /^(?:https?:\/\/)(?:(?:s|www)\.)?musescore\.com\/[^\s]+$/;
@@ -99,7 +101,10 @@ app.post("/download", async (req, res) => {
                         throw new Error(`Unsupported format: ${format}`);
                 }
 
-                const filename = `${scoreinfo.fileName}.${fileExt}`;
+                const rawName = scoreinfo.fileName || "score";
+                const decodedName = he.decode(rawName); // Turns &#039; into '
+                const safeName = sanitize(decodedName) || "score"; // Removes dangerous characters
+                const filename = `${safeName}.${fileExt}`;
                 const filePath = path.join(outputDir, filename);
                 await fs.promises.writeFile(filePath, fileData);
 
